@@ -7,7 +7,7 @@ int SW_pin = 2;
 int playTime_pin = 3; //busypin
 
 unsigned char order[4] = {0xAA, 0x02, 0x00, 0xB0};
-int playWait = 1000;
+int playWait = 100;
 int SWdata = 0;
 int playTime = 0;
 
