@@ -4,7 +4,7 @@ SoftwareSerial mySerial(10, 11); //TX&RX for MP3VoiceModule
 
 int LED_pin = 13;
 int SW_pin = 2;
-int playTime_pin = 3; //busypin
+int playTime_pin = A3; //busypin
 
 unsigned char order[4] = {0xAA, 0x02, 0x00, 0xB0};
 int playWait = 100;
@@ -26,7 +26,7 @@ void loop()
 {
 
     SWdata = digitalRead(SW_pin);
-    playTime = digitalRead(playTime_pin);
+    playTime = analogRead(playTime_pin);
 
     if (SWdata == 0)
     { //スイッチHIGHでLEDHIGH
