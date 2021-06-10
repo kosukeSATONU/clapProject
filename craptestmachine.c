@@ -26,7 +26,7 @@ void loop()
 {
 
     SWdata = digitalRead(SW_pin);
-    playTime = analogRead(playTime_pin);
+    playTime = analogRead(playTime_pin); //450~453返り値
 
     if (SWdata == 0)
     { //スイッチHIGHでLEDHIGH
