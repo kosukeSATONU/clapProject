@@ -7,8 +7,9 @@ int SW_pin = 2;
 int playTime_pin = 3; //busypin
 
 unsigned char order[4] = {0xAA, 0x02, 0x00, 0xB0};
-int SWdata;
 int playWait = 1000;
+int SWdata = 0;
+int playTime = 0;
 
 void setup()
 {
@@ -24,24 +25,24 @@ void setup()
 void loop()
 {
 
-    int SWdata = 0;
-    int playTime = 0;
-
     SWdata = digitalRead(SW_pin);
     playTime = digitalRead(playTime_pin);
 
-    if (SWdata == 1)
+    if (SWdata == 0)
     { //スイッチHIGHでLEDHIGH
-        digitalWrite(LED_pin, LOW);
+        digitalWrite(LED_pin, 0);
     }
     else
     {
-        digitalWrite(LED_pin, HIGH);
+        digitalWrite(LED_pin, 1);
         play(0x01);               //Play the specified audio:0x01-file0001//trackを指定
         mySerial.write(order, 4); //order play
     }
 
+    Serial.print(playTime);
+    Serial.print("  SWdata=");
     Serial.println(SWdata);
+
     delay(100);
 }
 
