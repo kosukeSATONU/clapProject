@@ -4,18 +4,18 @@ SoftwareSerial mySerial(10, 11); //TX&RX for MP3VoiceModule
 
 int LED_pin = 13;
 int SW_pin = 2;
-int playTime_pin = A3; //busypin
+int playing_pin = A3; //busypin
 
 unsigned char order[4] = {0xAA, 0x02, 0x00, 0xB0};
 int playWait = 1000;
 int SWdata = 0;
-int playTime = 0;
+int playing = 0;
 
 void setup()
 {
     pinMode(SW_pin, INPUT);
-    pinMode(LED_pin, OUTPUT);     //スイッチLED用セットアップ
-    pinMode(playTime_pin, INPUT); //Acquire BUSYpin 演奏時HIGH
+    pinMode(LED_pin, OUTPUT);    //スイッチLED用セットアップ
+    pinMode(playing_pin, INPUT); //Acquire BUSYpin 演奏時HIGH
 
     Serial.begin(9600);
     mySerial.begin(9600);
@@ -26,7 +26,7 @@ void loop()
 {
 
     SWdata = digitalRead(SW_pin);
-    playTime = analogRead(playTime_pin);
+    playing = analogRead(playing_pin);
 
     if (SWdata == 0)
     { //スイッチHIGHでLEDHIGH
@@ -39,7 +39,7 @@ void loop()
         mySerial.write(order, 4); //order play
     }
 
-    Serial.print(playTime);
+    Serial.print(playing);
     Serial.print("  SWdata=");
     Serial.println(SWdata);
 
