@@ -41,6 +41,13 @@ void loop()
         playNum = 1;
     }
 
+    //音楽再生
+    while (playNum == 1)
+    {
+        play(0x01);               //Play the specified audio:0x01-file0001//trackを指定
+        mySerial.write(order, 4); //order play
+    }
+
     Serial.print("  playNum=");
     Serial.print(playNum);
 
@@ -51,18 +58,6 @@ void loop()
     Serial.println(playing);
 
     delay(100);
-}
-
-//音楽再生
-void myPlaySound()
-{
-
-    if (playNum == 1)
-    {
-        play(0x01);               //Play the specified audio:0x01-file0001//trackを指定
-        mySerial.write(order, 4); //order play
-        delay(playWait);
-    }
 }
 
 void play(unsigned char Track)
