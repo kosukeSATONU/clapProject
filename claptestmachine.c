@@ -26,13 +26,8 @@ void setup()
 void loop()
 {
 
-<<<<<<< HEAD:craptestmachine.c
-    SWdata = digitalRead(SW_pin);
-    playTime = analogRead(playTime_pin); //450~453返り値
-=======
     checkSW = digitalRead(SW_pin);
     playing = analogRead(playing_pin); //450~455くらい
->>>>>>> develop_bugfix:claptestmachine.c
 
     //スイッチHIGHorLOWチェック
     if (checkSW == 0)
@@ -56,10 +51,10 @@ void loop()
     Serial.print("  playNum=");
     Serial.print(playNum);
 
-    Serial.print("  checkSW=");
+    Serial.print("  checkSW="); //スイッチチェック
     Serial.print(checkSW);
 
-    Serial.print("  playing=");
+    Serial.print("  playing="); //プレイ中
     Serial.println(playing);
 
     delay(100);
