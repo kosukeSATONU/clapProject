@@ -4,18 +4,19 @@ SoftwareSerial mySerial(10, 11); //TX&RX for MP3VoiceModule
 
 int LED_pin = 13;
 int SW_pin = 2;
-int playTime_pin = A3; //busypin
+int playing_pin = A3; //busypin
 
 unsigned char order[4] = {0xAA, 0x02, 0x00, 0xB0};
 int playWait = 100;
-int SWdata = 0;
-int playTime = 0;
+int checkSW = 0;
+int playing = 0;
+int playNum = 0;
 
 void setup()
 {
     pinMode(SW_pin, INPUT);
-    pinMode(LED_pin, OUTPUT);     //スイッチLED用セットアップ
-    pinMode(playTime_pin, INPUT); //Acquire BUSYpin 演奏時HIGH
+    pinMode(LED_pin, OUTPUT);    //スイッチLED用セットアップ
+    pinMode(playing_pin, INPUT); //Acquire BUSYpin 演奏時HIGH
 
     Serial.begin(9600);
     mySerial.begin(9600);
@@ -25,23 +26,41 @@ void setup()
 void loop()
 {
 
+<<<<<<< HEAD:craptestmachine.c
     SWdata = digitalRead(SW_pin);
     playTime = analogRead(playTime_pin); //450~453返り値
+=======
+    checkSW = digitalRead(SW_pin);
+    playing = analogRead(playing_pin); //450~455くらい
+>>>>>>> develop_bugfix:claptestmachine.c
 
-    if (SWdata == 0)
-    { //スイッチHIGHでLEDHIGH
+    //スイッチHIGHorLOWチェック
+    if (checkSW == 0)
+    {
         digitalWrite(LED_pin, 0);
+        playNum = 0;
     }
-    else
+    else if (checkSW == 1)
     {
         digitalWrite(LED_pin, 1);
+        playNum = 1;
+    }
+
+    //音楽再生
+    while (playNum == 1)
+    {
         play(0x01);               //Play the specified audio:0x01-file0001//trackを指定
         mySerial.write(order, 4); //order play
     }
 
-    Serial.print(playTime);
-    Serial.print("  SWdata=");
-    Serial.println(SWdata);
+    Serial.print("  playNum=");
+    Serial.print(playNum);
+
+    Serial.print("  checkSW=");
+    Serial.print(checkSW);
+
+    Serial.print("  playing=");
+    Serial.println(playing);
 
     delay(100);
 }
