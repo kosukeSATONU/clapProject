@@ -50,7 +50,7 @@ void loop()
     {
         for (int i = 0; i < 10; i++) //500m/sスイッチの状態変化をみるon→off/off→on
         {
-            delay(30);
+            delay(5);
             checkSW = digitalRead(SW_pin);
             if (checkSW != buttonState) //スイッチ状態が変化していたら
             {
@@ -66,10 +66,21 @@ void loop()
         while (checkSW == 1) //ボタンがoffになるまで状態を読み続けて待つ
         {
             checkSW = digitalRead(SW_pin);
+
+            play(3);                  //play(トラック番号) 3=長い拍手/2=重単拍手,1=軽単拍手
+            mySerial.write(order, 4); //order play
+            //delay(20);
+            while (checkSW == 1)
+            {
+                checkSW = digitalRead(SW_pin);
+                delay(5);
+            }
             changeNum = 2;
         }
         buttonState = 0;
     }
+    Serial.print("  changeNum=");
+    Serial.print(changeNum);
 
     //変化に合わせて音楽再生
     switch (changeNum)
@@ -84,21 +95,20 @@ void loop()
         {
             play(2);                  //play(トラック番号) 1=長い拍手/2=単拍手
             mySerial.write(order, 4); //order play
-            delay(400);
+            //delay(100);
             changeNum = 0;
         } // changeNumが1のとき実行されるシングル
         break;
 
-    case 2: //changeNumが2のとき実行される
-        // DFRVM_Stop();
-        // mySerial.write(order, 4); //order play
-        changeNum = 1;
+    case 2:                       //changeNumが2のとき実行される
+        play(2);                  //play(トラック番号) 1=長い拍手/2=単拍手
+        mySerial.write(order, 4); //order play
+        //delay(100);
+        changeNum = 0;
         break;
     }
     //モニター
 
-    Serial.print("  changeNum=");
-    Serial.print(changeNum);
     Serial.print("  playing=");
     Serial.println(playing);
     //
