@@ -52,7 +52,7 @@ void loop()
             play(2); //play(トラック番号) 1=長い拍手/2=単拍手
 
             mySerial.write(order, 4); //order play
-            delay(100);
+            //delay(100);
             // if (checkSW != 1)
             // {
             //     stop(04);
