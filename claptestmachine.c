@@ -8,8 +8,6 @@ int LED_pin = 13;
 int SW_pin = 2;
 int playing_pin = A3; //busypin
 
-uint16_t count_low = 0;
-
 unsigned char order[4] = {0xAA, 0x02, 0x00, 0xB0};
 int playWait = 100;
 int checkSW = 0;
@@ -25,7 +23,7 @@ void setup()
 
     Serial.begin(9600);
     mySerial.begin(9600);
-    volume(0x10); //Volume settings 0x00~0x1E//ボリュームコントロール
+    volume(0x1E); //Volume settings 0x00~0x1E//ボリュームコントロール
 }
 
 void loop()
@@ -52,7 +50,7 @@ void loop()
     {
         for (int i = 0; i < 10; i++) //500m/sスイッチの状態変化をみるon→off/off→on
         {
-            delay(5);
+            delay(30);
             checkSW = digitalRead(SW_pin);
             if (checkSW != buttonState) //スイッチ状態が変化していたら
             {
@@ -86,15 +84,15 @@ void loop()
         {
             play(2);                  //play(トラック番号) 1=長い拍手/2=単拍手
             mySerial.write(order, 4); //order play
-            //delay(200);
+            delay(400);
             changeNum = 0;
         } // changeNumが1のとき実行されるシングル
         break;
 
-    case 2:                       //changeNumが2のとき実行される
-        play(1);                  //play(トラック番号) 1=長い拍手/2=単拍手
-        mySerial.write(order, 4); //order play
-        changeNum = 0;
+    case 2: //changeNumが2のとき実行される
+        // DFRVM_Stop();
+        // mySerial.write(order, 4); //order play
+        changeNum = 1;
         break;
     }
     //モニター
@@ -115,13 +113,11 @@ void play(unsigned char Track)
     mySerial.write(play, 6);
 }
 
-/*
- void spPlay(unsigned char Tr)
- {
-     unsigned char spPlay[6] = {0xAA, 0x07, 0x02, 0x00, Tr, Tr + 0xB3};
-     mySerial.write(spPlay, 6);
- }
-*/
+// void DFRVM_Stop()
+// {
+//      char dt[4] = {0xAA,0x04,0x00,0x00} ;
+//      mySerial.write(dt,4) ;  // [04]コマンドの送信
+// }
 
 void volume(unsigned char vol)
 {
