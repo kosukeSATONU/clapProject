@@ -1,6 +1,7 @@
 #include <SoftwareSerial.h>
-//http://tomorrow.meyon.gonna.jp/?eid=1005431
-//参考
+//参考 http://tomorrow.meyon.gonna.jp/?eid=1005431
+//ノイズ対策！3.3V製品なので、arduino3.3Vから電源を取るか、5Vに1kΩ抵抗挟むこと
+//play(トラック番号) 1=無音/2=高音単/3=ロング35秒/4=低音単/
 
 SoftwareSerial mySerial(10, 11); //TX&RX for MP3VoiceModule
 
@@ -67,7 +68,7 @@ void loop()
         {
             checkSW = digitalRead(SW_pin);
 
-            play(3);                  //play(トラック番号) 3=長い拍手/2=重単拍手,1=軽単拍手
+            play(3);                  //play(トラック番号) 1=無音/2=高音単/3=ロング35秒/4=低音単/
             mySerial.write(order, 4); //order play
             //delay(20);
             while (checkSW == 1)
@@ -93,7 +94,7 @@ void loop()
     case 1:
         if (playing == 0)
         {
-            play(2);                  //play(トラック番号) 1=長い拍手/2=単拍手
+            play(2);                  //play(トラック番号) 1=無音/2=高音単/3=ロング35秒/4=低音単/
             mySerial.write(order, 4); //order play
             //delay(100);
             changeNum = 0;
@@ -101,7 +102,7 @@ void loop()
         break;
 
     case 2:                       //changeNumが2のとき実行される
-        play(2);                  //play(トラック番号) 1=長い拍手/2=単拍手
+        play(1);                  //play(トラック番号) 1=無音/2=高音単/3=ロング35秒/4=低音単/
         mySerial.write(order, 4); //order play
         //delay(100);
         changeNum = 0;
