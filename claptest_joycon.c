@@ -12,13 +12,11 @@
 SoftwareSerial mySerial(10, 11); //TX&RX for MP3VoiceModule
 
 int LED_pin = 13;
-int SW_pin = 2;
 int playing_pin = A3; //busypin
 
 //拍手タクトスイッチ
 unsigned char order[4] = {0xAA, 0x02, 0x00, 0xB0};
 int playWait = 100;
-int checkSW = 0;
 int changeNum = 0;
 int playing = 0;
 int buttonState = 0;
@@ -27,6 +25,10 @@ int buttonState = 0;
 int stSW_pin = 2; //中心のタクトスイッチ=押された時LOW→INPUT_PULLUP
 int stY_pin = A0;
 int stX_pin = A1;
+
+int checkSW = 0; //チェック関数
+int SW_pin = 2;
+
 int switch_state = 0;
 int x_pos = 0;
 int y_pos = 0;
@@ -44,7 +46,7 @@ void setup()
     pinMode(stSW_pin, INPUT_PULLUP); //
 
     Serial.begin(9600);
-    mySaerial.begin(9600);
+    mySerial.begin(9600);
     volume(0x1E); //Volume settings 0x00~0x1E//ボリュームコントロール
 }
 
