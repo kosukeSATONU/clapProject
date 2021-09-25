@@ -61,7 +61,7 @@ void loop()
     checkSW = digitalRead(stSW_pin);   //センタースイッチ
     playing = analogRead(playing_pin); //音再生時450~455くらい
 
-    // X軸方向のセンター(527)の前後OFFSET分は反応中止
+    // X軸方向のセンター(527)の前後OFFSET分は反応中止する
     if ((x_pos > 527 - 527 * OFFSET) && (x_pos < 527 + 527 * OFFSET))
     {
         x_state = 0;
@@ -71,7 +71,7 @@ void loop()
         x_state = 1;
     }
 
-    // Y軸方向のセンター(504)の前後OFFSET分は反応中止
+    // Y軸方向のセンター(504)の前後OFFSET分は反応中止する
     if ((y_pos > 504 - 504 * OFFSET) && (y_pos < 504 + 504 * OFFSET))
     {
         y_state = 0;
