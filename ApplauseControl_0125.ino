@@ -56,7 +56,7 @@
 #define JOYSTICK_PIN_SW 2 ///< ジョイステックセンタースイッチピン
 
 #define JOYSTICK_CENTER_POS_X (326.0f) ///< X軸方向の中心位置の値(アナログ値[0～1024])(TODO:暫定)
-#define JOYSTICK_CENTER_POS_Y (326.0f) ///< Y軸方向の中心位置の値(アナログ値[0～1024])(TODO:暫定)
+#define JOYSTICK_CENTER_POS_Y (341.0f) ///< Y軸方向の中心位置の値(アナログ値[0～1024])(TODO:暫定)
 #define JOYSTICK_POS_X_MIN (0)         ///< X軸方向を-方向に倒したときの最小値(アナログ値[0～1024])(TODO:暫定)
 #define JOYSTICK_POS_X_MAX (664)       ///< X軸方向を+方向に倒したときの最大値(アナログ値[0～1024])(TODO:暫定)
 #define JOYSTICK_POS_Y_MIN (0)         ///< Y軸方向を-方向に倒したときの最小値(アナログ値[0～1024])(TODO:暫定)
