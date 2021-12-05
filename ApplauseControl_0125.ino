@@ -35,7 +35,7 @@
 
 #define _DEBUG_TEST_ false ///< デバッグテスト
 
-#define USE_WAKEUP_SOUND true   ///< 起動音を鳴らす場合はtue ファイルNo=1、鳴らさない場合はfalse
+#define USE_WAKEUP_SOUND true   ///< 起動音を鳴らす場合はtrue ファイルNo=1、鳴らさない場合はfalse
 #define CONSOLE_BAUDRATE (9600) ///< デバッグモニタ用のボーレート
 
 #define USE_DFPLAYER_MINI true ///< DFRobotDFPlayerMini(DFR0299)を使用するかどうか
