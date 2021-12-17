@@ -44,11 +44,11 @@
 #define VOICE_MODULE_PIN_TX         10      ///< ボイスモジュール(DFR0299)のTXピン
 #define VOICE_MODULE_PIN_BUSY       A3      ///< ボイスモジュール(DFR0299)のBUSYピン
 #define VOICE_MODULE_BAUDRATE       (9600)  ///< ボイスモジュール(DFR0299)のボーレート
-#define VOICE_MODULE_SPEED1_DEFAULT (210)   ///< ボイスモジュールの再生速度(ディレイ時間)音源モード1のデフォルト値(TODO:暫定)
+#define VOICE_MODULE_SPEED1_DEFAULT (300)   ///< ボイスモジュールの再生速度(ディレイ時間)音源モード1のデフォルト値(TODO:暫定)
 #define VOICE_MODULE_SPEED2_DEFAULT (210)   ///< ボイスモジュールの再生速度(ディレイ時間)音源モード2のデフォルト値(TODO:暫定)
 #define VOICE_MODULE_SPEED3_DEFAULT (210)   ///< ボイスモジュールの再生速度(ディレイ時間)音源モード3のデフォルト値(TODO:暫定)
-#define VOICE_MODULE_SPEED1_MIN     (200)   ///< ボイスモジュールの再生速度(ディレイ時間)音源モード1の最小値(TODO:暫定)
-#define VOICE_MODULE_SPEED1_MAX     (45)    ///< ボイスモジュールの再生速度(ディレイ時間)音源モード1の最大値(TODO:暫定)
+#define VOICE_MODULE_SPEED1_MIN     (280)   ///< ボイスモジュールの再生速度(ディレイ時間)音源モード1の最小値(TODO:暫定)
+#define VOICE_MODULE_SPEED1_MAX     (150)    ///< ボイスモジュールの再生速度(ディレイ時間)音源モード1の最大値(TODO:暫定)
 #define VOICE_MODULE_SPEED2_MIN     (200)  ///< ボイスモジュールの再生速度(ディレイ時間)音源モード2の最小値(TODO:暫定)
 #define VOICE_MODULE_SPEED2_MAX     (40)   ///< ボイスモジュールの再生速度(ディレイ時間)音源モード2の最大値(TODO:暫定)
 #define VOICE_MODULE_SPEED3_MIN     (200)   ///< ボイスモジュールの再生速度(ディレイ時間)音源モード3の最小値(TODO:暫定)
@@ -57,7 +57,7 @@
 #define VOICE_MODULE_VOLUME_MIN     (20)     ///< ボイスモジュールの音量の最小値
 #define VOICE_MODULE_VOLUME_MAX     (30)    ///< ボイスモジュールの音量の最大値
 
-#define SOUNDS_SELECTED_MAX         (3)     ///< SW操作による最大音源数
+#define SOUNDS_SELECTED_MAX         (3)     ///< sSW操作による最大音源数
 
 #define JOYSTICK_PIN_X              A1      ///< ジョイステックX軸ピン
 #define JOYSTICK_PIN_Y              A0      ///< ジョイステックY軸ピン
@@ -77,13 +77,13 @@
 #define JOYSTICK_POS_Y_MIN      (0)         ///< Y軸方向を-方向に倒したときの最小値(アナログ値[0～1024])(TODO:暫定)
 #define JOYSTICK_POS_Y_MAX      (1023)      ///< Y軸方向を+方向に倒したときの最大値(アナログ値[0～1024])(TODO:暫定)
 
-#define JOYSTICK_RAPID_REACTION_THRESHOL    (600)   ///< ジョイスティックを急激に倒されたかどうかを判定する閾値(TODO:暫定)
+#define JOYSTICK_RAPID_REACTION_THRESHOL    (500)   ///< ジョイスティックを急激に倒されたかどうかを判定する閾値(TODO:暫定)
                                                     ///< 前回との差分を取った操作量との比較(急激に倒せば操作量が大きくなる)
 
-#define INTERVAL_MS             (100)   ///< インターバル時間[ms](TODO:暫定)
-#define TIMER_2_INTERVAL_MS     (100)   ///< タイマー2のインターバル時間[ms]
+#define INTERVAL_MS             (100)   ///< インターバル時間[ms](TODO:暫定)defolt=100
+#define TIMER_2_INTERVAL_MS     (100)   ///< タイマー2のインターバル時間[ms]defolt=100
 
-#define INVALID_AREA_THRESHOLD  (0.05f) ///< ジョイスティックの無効領域の閾値(%で設定:デフォルトは5%とする)(TODO:暫定)
+#define INVALID_AREA_THRESHOLD  (0.025f) ///< ジョイスティックの無効領域の閾値(%で設定:デフォルトは5%とする)(TODO:暫定)
                                         ///< 中心から閾値以上変化があれば有効データとみなす。
 const float THRESHOLD_X = JOYSTICK_CENTER_POS_X * INVALID_AREA_THRESHOLD;
 const float THRESHOLD_Y = JOYSTICK_CENTER_POS_Y * INVALID_AREA_THRESHOLD;
@@ -327,12 +327,12 @@ void timer2Callback()
     }
 
 
-    CONSOLE.print("[");         CONSOLE.print(timeTick_ms); CONSOLE.print("]\t");
-    CONSOLE.print("Joystick\t");
+    //CONSOLE.print("[");         CONSOLE.print(timeTick_ms); CONSOLE.print("]\t");
+    //CONSOLE.print("Joystick\t");
     CONSOLE.print(",X:");        CONSOLE.print(JoystickInfo.ValueX);
-    CONSOLE.print(",X Last:");   CONSOLE.print(JoystickInfoLast.ValueX);
+    //CONSOLE.print(",X Last:");   CONSOLE.print(JoystickInfoLast.ValueX);
     CONSOLE.print(",Y:");        CONSOLE.print(JoystickInfo.ValueY);
-    CONSOLE.print(",Y Last:");   CONSOLE.print(JoystickInfoLast.ValueY);
+    //CONSOLE.print(",Y Last:");   CONSOLE.print(JoystickInfoLast.ValueY);
     CONSOLE.print(",IsValidX:"); CONSOLE.print(JoystickInfo.IsValidX);
     CONSOLE.print(",IsValidY:"); CONSOLE.print(JoystickInfo.IsValidY);
     CONSOLE.print(",SW:");       CONSOLE.print(JoystickInfo.OnOff);
