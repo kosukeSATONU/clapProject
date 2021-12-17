@@ -45,8 +45,8 @@
 #define VOICE_MODULE_PIN_BUSY       A3      ///< ボイスモジュール(DFR0299)のBUSYピン
 #define VOICE_MODULE_BAUDRATE       (9600)  ///< ボイスモジュール(DFR0299)のボーレート
 #define VOICE_MODULE_SPEED1_DEFAULT (300)   ///< ボイスモジュールの再生速度(ディレイ時間)音源モード1のデフォルト値(TODO:暫定)
-#define VOICE_MODULE_SPEED2_DEFAULT (210)   ///< ボイスモジュールの再生速度(ディレイ時間)音源モード2のデフォルト値(TODO:暫定)
-#define VOICE_MODULE_SPEED3_DEFAULT (210)   ///< ボイスモジュールの再生速度(ディレイ時間)音源モード3のデフォルト値(TODO:暫定)
+#define VOICE_MODULE_SPEED2_DEFAULT (300)   ///< ボイスモジュールの再生速度(ディレイ時間)音源モード2のデフォルト値(TODO:暫定)
+#define VOICE_MODULE_SPEED3_DEFAULT (300)   ///< ボイスモジュールの再生速度(ディレイ時間)音源モード3のデフォルト値(TODO:暫定)
 #define VOICE_MODULE_SPEED1_MIN     (280)   ///< ボイスモジュールの再生速度(ディレイ時間)音源モード1の最小値(TODO:暫定)
 #define VOICE_MODULE_SPEED1_MAX     (150)    ///< ボイスモジュールの再生速度(ディレイ時間)音源モード1の最大値(TODO:暫定)
 #define VOICE_MODULE_SPEED2_MIN     (280)  ///< ボイスモジュールの再生速度(ディレイ時間)音源モード2の最小値(TODO:暫定)
@@ -662,8 +662,8 @@ void playTask1(void)
     const int TRACK_NUM = 5;    ///< 音源モードに対するトラック数
     int tracksNo[SOUNDS_SELECTED_MAX][TRACK_NUM] = {    // 各音源モードの拍手の再生トラックNoの定義
         {1, 2, 3, 4, 5},        ///< 拍手音源モード1の拍手
-        {6, 7, 8, 9, 10},       ///< 拍手音源モード2の拍手
-        {11, 12, 13, 14, 15} }; ///< 拍手音源モード3の拍手
+        {1, 2, 3, 4, 5},       ///< 拍手音源モード2の拍手
+        {1, 2, 3, 4, 5} }; ///< 拍手音源モード3の拍手
 #if USE_DFPLAYER_MINI
 
     // TODO:ここに拍手を実現するための処理を実装する
