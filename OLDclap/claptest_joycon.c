@@ -2,16 +2,23 @@
 
 /* for アナログスティック
 
+<<<<<<< HEAD
+//参考 http://tomorrow.meyon.gonna.jp/?eid=1005431
+//ノイズ対策！3.3V製品なので、arduino3.3Vから電源を取るか、5Vに1kΩ抵抗挟むこと
+//5Vの時はボリュームモジュールのVCCに1kΩ挟むこと
+//play(トラック番号) 1=無音/2=高音単/3=ロング35秒/4=低音単/=多分書き込んだ順番に番号がが割り振られている！
+=======
 参考 http://tomorrow.meyon.gonna.jp/?eid=1005431
 ノイズ対策！3.3V製品なので、arduino3.3Vから電源を取るか、5Vに1kΩ抵抗挟むこと
 安定電源(ACアダプタ,PC,満タン9V電池)を使うとノイズは消える
 play(トラック番号) 1=無音/2=高音単/3=ロング35秒/4=低音単/=多分書き込んだ順番に番号がが割り振られている！
 
 */
+>>>>>>> dev_JstickChange
 
-* /
+*/
 
-    SoftwareSerial mySerial(10, 11); //TX&RX for MP3VoiceModule
+SoftwareSerial mySerial(10, 11); //TX&RX for MP3VoiceModule
 
 int LED_pin = 13;
 int playing_pin = A3; //busypin
